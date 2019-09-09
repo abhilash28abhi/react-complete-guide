@@ -44,14 +44,9 @@ class App extends Component {
 
         return (<div className = "App" >
             <h1 > Hi I am a React App by Abhilash from India!!! </h1> <button style = { buttonStyle }
-            onClick = { this.switchButtonHandler.bind(this, 'Anku') } > Switch name </button> <
-            Person name = { this.state.persons[0].name }
-            age = { this.state.persons[0].age }
-            changed = { this.nameChangedHandler }
-            /> 
-            <Person name = { this.state.persons[2].name }
-            age = { this.state.persons[2].age }
-            click = { this.switchButtonHandler.bind(this, 'Abhilash!!!') } > My Hobbies are racing </Person> 
+            onClick = { this.switchButtonHandler.bind(this, 'Anku') } > Switch name </button> 
+            <Person name = { this.state.persons[0].name } age = {this.state.persons[0].age } changed = { this.nameChangedHandler }/> 
+            <Person name = { this.state.persons[2].name } age = { this.state.persons[2].age }click = { this.switchButtonHandler.bind(this, 'Abhilash!!!') } > My Hobbies are racing </Person> 
             <Person name = "Monika" age = "25" />
             </div>
         );
