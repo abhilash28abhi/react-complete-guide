@@ -3,34 +3,36 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+    //assigning an object to state property
     state = {
         persons: [
-            { name: 'Abhilash', age: 28 },
-            { name: 'Monika', age: 26 },
-            { name: 'David', age: 16 },
+            {id: '1', name: 'Abhilash', age: 28 },
+            {id: '2', name: 'Monika', age: 26 },
+            {id: '3', name: 'David', age: 19 },
         ],
         showPersons : false
     };
 
-    switchButtonHandler = (newName) => {
-        //console.log('Was clicked');
-        //DONT DO THIS this.state.persons[1].name='State Changed';
-        this.setState({
-            persons: [
-                { name: newName, age: 28 },
-                { name: 'Monika', age: 25 },
-                { name: 'David', age: 16 },
-            ]
+    nameChangedHandler = (event, personId) => {
+        const personIndex = this.state.persons.findIndex(per => {
+            return per.id===personId;
         });
-    }
+        
+        //create a new person object to avoid mutating the original person's state
+        //this will return the person object whose value needs to be modified
+        const person = {
+            ...this.state.persons[personIndex]
+        };
+        
+        //update the person name of the copied person object
+        person.name = event.target.value;
+        //get all the person objects
+        const persons = [...this.state.persons]; //or use slice()
+        //replace the modified person object in the object
+        persons[personIndex] = person;
 
-    nameChangedHandler = (event) => {
         this.setState({
-            persons: [
-                { name: event.target.value, age: 28 },
-                { name: 'Monika', age: 25 },
-                { name: 'David', age: 16 },
-            ]
+            persons: persons
         });
     }
 
@@ -42,7 +44,11 @@ class App extends Component {
     }
 
     deletePersonHandler = (personIndex) => {
-        const persons = this.state.persons;
+        //slice will create a copy of original array object; state of an object should be updated in immutable way
+        //const persons = this.state.persons.slice();
+        //using ES6 spread operator approach
+        const persons = [...this.state.persons];
+        //splice will delete elements from the array object
         persons.splice(personIndex,1);
         this.setState({
             persons : persons
@@ -64,7 +70,8 @@ class App extends Component {
             persons = (
                 <div>
                     {this.state.persons.map((person, index) => {
-                       return <Person click={() => this.deletePersonHandler(index)} name={person.name} age={person.age}></Person>
+                       return <Person click={() => this.deletePersonHandler(index)} name={person.name} 
+                       age={person.age} key={person.id} changed={(event) => this.nameChangedHandler(event, person.id)}></Person>
                     })}
                 </div>      
             );
