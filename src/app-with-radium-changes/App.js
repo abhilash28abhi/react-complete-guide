@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Radium, {StyleRoot} from 'radium';
 import './App.css';
 import Person from './Person/Person';
-
+//radium library is used to have pseudo selectors with inline styles
+//Styleroot component is used where media queries are used to wrap the entire app with that
+//its not required for pseduo selectors
 
 class App extends Component {
     //assigning an object to state property
@@ -63,7 +66,11 @@ class App extends Component {
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            ':hover' : {
+                backgroundColor : 'lightgreen',
+                color : 'black'
+            }
         };
 
         //react returns the JSX code present within the return method
@@ -78,6 +85,10 @@ class App extends Component {
                 </div>      
             );
             buttonStyle.backgroundColor = 'red';
+            buttonStyle[':hover'] = {
+                backgroundColor : 'salmon',
+                color : 'black'
+            }
         }
 
         const classNames = [];
@@ -90,15 +101,17 @@ class App extends Component {
 
 
         return (
+        <StyleRoot>
         <div className = "App" >
             <h1 > Hi!! This is my first React App!!! </h1> 
             <p className={classNames.join(' ')}>This is really working</p>
             <button style = { buttonStyle } onClick = {this.toggleButtonHandler} > Toggle name </button>           
                 {persons} 
         </div>
+        </StyleRoot>
         );
         //return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'Hi I am a React App!!'));
     }
 }
 
-export default App;
+export default Radium(App);
