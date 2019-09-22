@@ -10,3 +10,27 @@
   color : navy;
   font-weight: bold;
 }
+
+/* will apply style to every button within the App component */
+.App button{
+  border: 1px solid blue;
+  padding: 8px;
+  font: inherit;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+
+.App button:hover {
+  background-color: lightgreen;
+  color: black;
+}
+
+.App button.red {
+  background-color: red;
+}
+
+.App button.red:hover {
+  background-color: salmon;
+  color: black;
+}
