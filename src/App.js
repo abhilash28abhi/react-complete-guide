@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+//classes is just a name can be anything which holds all the css classes from app.css for local ref
+//with css modules you can write normall css and make sure it applies only to your component
+//It's not using magic for that, instead it'll simply automatically generate unique CSS class names for you
+import classes from './App.css';
 import Person from './Person/Person';
 
 
@@ -57,15 +60,6 @@ class App extends Component {
     }
 
     render() {
-        const buttonStyle = {
-            backgroundColor: 'green',
-            color: 'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer'
-        };
-
         //react returns the JSX code present within the return method
         let persons = null;
         if (this.state.showPersons) {
@@ -77,23 +71,23 @@ class App extends Component {
                     })}
                 </div>      
             );
-            buttonStyle.backgroundColor = 'red';
+            
         }
 
-        const classNames = [];
+        const assignedClasses = [];
         if (this.state.persons.length <= 2) {
-            classNames.push('red');
+            assignedClasses.push(classes.red);
         }
         if (this.state.persons.length <= 1) {
-            classNames.push('bold'); //here classes wld be 'red' ,'bold'
+            assignedClasses.push(classes.bold); //here classes wld be 'red' ,'bold'
         }
 
 
         return (
-        <div className = "App" >
+        <div className = {classes.App} >
             <h1 > Hi!! This is my first React App!!! </h1> 
-            <p className={classNames.join(' ')}>This is really working</p>
-            <button style = { buttonStyle } onClick = {this.toggleButtonHandler} > Toggle name </button>           
+            <p className={assignedClasses.join(' ')}>This is really working</p>
+            <button onClick = {this.toggleButtonHandler} > Toggle name </button>           
                 {persons} 
         </div>
         );

@@ -3,10 +3,20 @@
 }
 
 .red {
-  color: red;
+  color: yellow;
 }
 
 .bold {
   color : navy;
   font-weight: bold;
+}
+
+/* will apply style to every button within the App component */
+.button{
+  border: 1px solid blue;
+  padding: 8px;
+  font: inherit;
+  background-color: green;
+  color: white;
+
 }
