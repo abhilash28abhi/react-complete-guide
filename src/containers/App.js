@@ -8,6 +8,23 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
+
+    constructor (props) {
+        super(props);
+        console.log('App js constructor');
+        //we can also set state here
+        //actually creating the state object as below will internally call the constructor 
+        //then the super call and then set state
+       /*  this.state({
+            persons: [
+                {id: '1', name: 'Abhilash', age: 28 },
+                {id: '2', name: 'Monika', age: 26 },
+                {id: '3', name: 'David', age: 19 },
+            ],
+            showPersons : false
+        }); */
+    }
+
     //assigning an object to state property
     state = {
         persons: [
@@ -17,6 +34,17 @@ class App extends Component {
         ],
         showPersons : false
     };
+
+    //lifecycle hook method
+    static getDerivedStateFromProps = (props, state) => {
+        console.log('App js getDerivedStateFromProps called'+ props);
+        return state;
+    }
+
+    //lifeycle method
+    componentDidMount () {
+        console.log('App js componentDidMount');
+    }
 
     nameChangedHandler = (event, personId) => {
         const personIndex = this.state.persons.findIndex(per => {
@@ -61,6 +89,7 @@ class App extends Component {
     }
 
     render() {
+        console.log('App js render called');
         //react returns the JSX code present within the return method
         let persons = null;
 
