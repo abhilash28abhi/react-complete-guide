@@ -37,13 +37,24 @@ class App extends Component {
 
     //lifecycle hook method
     static getDerivedStateFromProps = (props, state) => {
-        console.log('App js getDerivedStateFromProps called'+ props);
+        console.log('App js getDerivedStateFromProps called', props);
         return state;
     }
 
     //lifeycle method
     componentDidMount () {
         console.log('App js componentDidMount');
+    }
+
+    //update life cycle hook
+    shouldComponentUpdate (nextProps, nextState) {
+        console.log('App js shouldComponentUpdate');
+        return true;
+    }
+
+    //update life cycle hook
+    componentDidUpdate () {
+        console.log('App js componentDidUpdate');
     }
 
     nameChangedHandler = (event, personId) => {
