@@ -29,6 +29,11 @@ componentDidUpdate (prevProps, prevState, message) {
     console.log('Message' , message);
 }
 
+//lifecycle hook method called during component destruction
+componentWillUnmount () {
+    console.log('Persons js componentWillUnmount called');
+}
+
 render () {
     console.log('Persons js rendering..');
     return this.props.persons.map((person, index) => {

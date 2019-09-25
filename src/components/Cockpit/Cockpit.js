@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
+
+    //react hook for functional components equivalent of componentDidMount + componentDidUpdate
+    //get called for every render cycle of cockpit
+    //equivalent for all class based component lifecycle methods
+    //to avoid callinging useEffect multiple times pass the 2nd arg to the method specifying the array of
+    //data on whose change this method should be called
+    //we can also have multiple useEffect method for mltiple criteria
+    //if empty array is passed then it will run only once during component App creation
+    useEffect(() => {
+        console.log('Cockpit.js useEffect called');
+        //to higlight this gets called multiple times
+        setTimeout(() => {
+            alert('');
+        }, 1000);
+    }, []);//[props.persons]
+
+    //useEffect();
+
     const assignedClasses = [];
     let buttonClass = '';
     if (props.showPersons) {
