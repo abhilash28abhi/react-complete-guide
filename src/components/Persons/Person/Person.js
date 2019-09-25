@@ -4,7 +4,7 @@ import classes from './Person.css';
 class Person extends Component {
 
     render () {
-        console.log('Person js rendering...');
+        console.log('[Person js] rendering...');
         return (
             <div className={classes.Person} >
             <p onClick={this.props.click}>I am a Person with name : {this.props.name} and age : {this.props.age} from my own component!!</p>

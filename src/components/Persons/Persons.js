@@ -10,9 +10,19 @@ class Persons extends Component {
 } */
 
 //update lifecycle hook method
+//can be used for performance optimization based on logic for when/when not to update the component
+//we can extend PureComponent instead of Component if we want to check if all props are updated or not
+//in the component; the shouldComponentUpdate will already be implemented in that component by default 
+//that we can avoid mulitple checks for props changes
 shouldComponentUpdate (nextProps, nextState) {
     console.log('Persons js shouldComponentUpdate called');
-    return true;
+    if (nextProps.persons !== this.props.persons ||
+        nextProps.clicked !== this.props.clicked ||
+        nextProps.changed !== this.props.changed) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
@@ -31,11 +41,11 @@ componentDidUpdate (prevProps, prevState, message) {
 
 //lifecycle hook method called during component destruction
 componentWillUnmount () {
-    console.log('Persons js componentWillUnmount called');
+    console.log('[Persons js] componentWillUnmount called');
 }
 
 render () {
-    console.log('Persons js rendering..');
+    console.log('[Persons js] rendering..');
     return this.props.persons.map((person, index) => {
             return <Person click={() => this.props.clicked(index)} name={person.name} 
             age={person.age} key={person.id} changed={(event) => this.props.changed(event, person.id)}></Person>

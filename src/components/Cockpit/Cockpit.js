@@ -11,7 +11,7 @@ const cockpit = (props) => {
     //we can also have multiple useEffect method for mltiple criteria
     //if empty array is passed then it will run only once during component App creation
     useEffect(() => {
-        console.log('Cockpit.js useEffect called');
+        console.log('[Cockpit.js] useEffect called');
         //to higlight this gets called multiple times
         setTimeout(() => {
             alert('');
@@ -42,4 +42,4 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+export default React.memo(cockpit);

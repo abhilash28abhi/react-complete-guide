@@ -11,7 +11,7 @@ class App extends Component {
 
     constructor (props) {
         super(props);
-        console.log('App js constructor');
+        console.log('[App js] constructor');
         //we can also set state here
         //actually creating the state object as below will internally call the constructor 
         //then the super call and then set state
@@ -37,24 +37,24 @@ class App extends Component {
 
     //lifecycle hook method
     static getDerivedStateFromProps = (props, state) => {
-        console.log('App js getDerivedStateFromProps called', props);
+        console.log('[App js] getDerivedStateFromProps called', props);
         return state;
     }
 
     //lifeycle method
     componentDidMount () {
-        console.log('App js componentDidMount');
+        console.log('[App js] componentDidMount');
     }
 
     //update life cycle hook
     shouldComponentUpdate (nextProps, nextState) {
-        console.log('App js shouldComponentUpdate');
+        console.log('[App js] shouldComponentUpdate');
         return true;
     }
 
     //update life cycle hook
     componentDidUpdate () {
-        console.log('App js componentDidUpdate');
+        console.log('[App js] componentDidUpdate');
     }
 
     nameChangedHandler = (event, personId) => {
@@ -100,7 +100,7 @@ class App extends Component {
     }
 
     render() {
-        console.log('App js render called');
+        console.log('[App js] render called');
         //react returns the JSX code present within the return method
         let persons = null;
 
