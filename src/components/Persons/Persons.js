@@ -15,7 +15,7 @@ class Persons extends Component {
 //in the component; the shouldComponentUpdate will already be implemented in that component by default 
 //that we can avoid mulitple checks for props changes
 shouldComponentUpdate (nextProps, nextState) {
-    console.log('Persons js shouldComponentUpdate called');
+    console.log('[Persons js] shouldComponentUpdate called');
     if (nextProps.persons !== this.props.persons ||
         nextProps.clicked !== this.props.clicked ||
         nextProps.changed !== this.props.changed) {
@@ -29,13 +29,13 @@ shouldComponentUpdate (nextProps, nextState) {
 //update lifecycle hook method
 //will be called before updating the state
 getSnapshotBeforeUpdate (prevProps, prevState) {
-    console.log('Persons js getSnapshotBeforeUpdate called');
+    console.log('[Persons js] getSnapshotBeforeUpdate called');
     return {message : 'Before update'};
 }
 
 //update lifecycle hook method called after the update is finished, wld be used most of the times
 componentDidUpdate (prevProps, prevState, message) {
-    console.log('Persons js componentDidUpdate called');
+    console.log('[Persons js] componentDidUpdate called');
     console.log('Message' , message);
 }
 
