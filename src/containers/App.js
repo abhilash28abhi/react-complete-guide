@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-
+import WithClass from '../hoc/WithCssClass';
 
 class App extends Component {
 
@@ -111,10 +111,10 @@ class App extends Component {
         }
 
         return (
-        <div className = {classes.App} >
+        <WithClass classes = {classes.App} >
             <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} persons={this.state.persons} toggle={this.toggleButtonHandler}></Cockpit>
             {persons} 
-        </div>
+        </WithClass>
         );
         //return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'Hi I am a React App!!'));
     }
