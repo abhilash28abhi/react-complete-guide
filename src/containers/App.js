@@ -6,6 +6,7 @@ import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithCssClass';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
 
@@ -32,7 +33,8 @@ class App extends Component {
             {id: '2', name: 'Monika', age: 26 },
             {id: '3', name: 'David', age: 19 },
         ],
-        showPersons : false
+        showPersons : false,
+        authenticated : false
     };
 
     //lifecycle hook method
@@ -99,6 +101,12 @@ class App extends Component {
         });
     }
 
+    loginHandler = () => {
+        this.setState(
+            {authenticated : true}
+        );
+    }
+
     render() {
         console.log('[App js] render called');
         //react returns the JSX code present within the return method
@@ -106,14 +114,20 @@ class App extends Component {
 
         if (this.state.showPersons) {
             persons = (
-                    <Persons persons={this.state.persons} clicked={this.deletePersonHandler} changed={this.nameChangedHandler}></Persons>     
+                    <Persons persons={this.state.persons} clicked={this.deletePersonHandler} 
+                    changed={this.nameChangedHandler}></Persons>     
             );
         }
 
         return (
         <WithClass classes = {classes.App} >
-            <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} persons={this.state.persons} toggle={this.toggleButtonHandler}></Cockpit>
-            {persons} 
+            <AuthContext.Provider value={{authenticated : this.state.authenticated, login : this.loginHandler}}>
+                <Cockpit title={this.props.appTitle}
+                showPersons={this.state.showPersons} persons={this.state.persons} 
+                toggle={this.toggleButtonHandler}>
+                </Cockpit>
+                {persons} 
+            </AuthContext.Provider>
         </WithClass>
         );
         //return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'Hi I am a React App!!'));

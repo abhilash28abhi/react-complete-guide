@@ -15,11 +15,14 @@ class Persons extends Component {
 //we can extend PureComponent instead of Component if we want to check if all props are updated or not
 //in the component; the shouldComponentUpdate will already be implemented in that component by default 
 //that we can avoid mulitple checks for props changes
+//We can extend PurComponent from react lib to avoid these checks and this method the PureComponent will
+//internally take care of these checks for each prop properties
 shouldComponentUpdate (nextProps, nextState) {
     console.log('[Persons js] shouldComponentUpdate called');
     if (nextProps.persons !== this.props.persons ||
         nextProps.clicked !== this.props.clicked ||
-        nextProps.changed !== this.props.changed) {
+        nextProps.changed !== this.props.changed ||
+        nextProps.isAuth !== this.props.isAuthenticated) {
         return true;
     } else {
         return false;
@@ -48,7 +51,7 @@ componentWillUnmount () {
 render () {
     console.log('[Persons js] rendering..');
     return this.props.persons.map((person, index) => {
-            return <Person click={() => this.props.clicked(index)} name={person.name} 
+            return <Person  click={() => this.props.clicked(index)} name={person.name} 
             age={person.age} key={person.id} changed={(event) => this.props.changed(event, person.id)}></Person>
          })
     };
